@@ -1,14 +1,14 @@
-import React from 'react';
-import { HeaderUser }  from '../components/HeaderUser/index'
-import { Header }  from '../components/Header/index'
+import React from "react";
+import { HeaderUser } from "../components/Organism/HeaderUser/index";
+import { Header } from "../components/Organism/Header/index";
 
 const Home = () => {
-    return (
-        <div>
-            <Header/>
-            <HeaderUser/>
-        </div>
-    );
+  return (
+    <div>
+      <HeaderUser />
+      <Header />
+    </div>
+  );
 };
 
 export default Home;
