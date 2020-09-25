@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useState } from "react";
 import {
   Card,
   Divider,
@@ -9,15 +9,36 @@ import {
   Icon,
 } from "semantic-ui-react";
 
-import logo from "../../../assets/png/switch.png";
+// import logo from "../../../assets/png/switch.png";
 
 export const Product = () => {
+  const [active, setActive] = useState(false);
+
+  const handleShow = () => setActive(true);
+  const handleHide = () => setActive(false);
+
+  const content = (
+    <div>
+      <Header as="h2" inverted>
+        Title
+      </Header>
+
+      <Button primary>Add</Button>
+      <Button>View</Button>
+    </div>
+  );
+
   return (
     <Card>
-      <Image
+      <Dimmer.Dimmable
+        as={Image}
+        blurring
+        dimmed={active}
+        dimmer={{ active, content }}
+        onMouseEnter={handleShow}
+        onMouseLeave={handleHide}
+        size="medium"
         src="https://react.semantic-ui.com/images/avatar/large/matthew.png"
-        wrapped
-        ui={false}
       />
       <Card.Content>
         <Divider clearing />
