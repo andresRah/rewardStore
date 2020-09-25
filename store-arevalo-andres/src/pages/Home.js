@@ -1,12 +1,21 @@
 import React from "react";
 import { HeaderUser } from "../components/Organism/HeaderUser/index";
-import { Header } from "../components/Organism/Header/index";
+import { HeaderSection } from "../components/Organism/HeaderSection/index";
+import { FilterSection } from "../components/Organism/FilterSection/index";
+import { ListProducts } from "../components/Organism/ListProducts/index";
 
 const Home = () => {
   return (
     <div>
       <HeaderUser />
-      <Header />
+      <HeaderSection />
+      <FilterSection />
+      <ListProducts />
+      <FilterSection />
+      <FilterSection />
+      <FilterSection />
+      <FilterSection />
+      <FilterSection />
     </div>
   );
 };

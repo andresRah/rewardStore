@@ -1,0 +1,13 @@
+.over-image {
+  z-index: 10000 !important;
+  position: absolute !important;
+  height: 80px !important;
+  left: 9.17% !important;
+  right: 69.03% !important;
+  top: calc(40% - 80px / 2 + 118px) !important;
+  font-style: normal !important;
+  font-weight: bold !important;
+  font-size: 52px !important;
+  line-height: 80px !important;
+  color: #ffffff !important;
+}

@@ -1,0 +1,18 @@
+.header-coin {
+  display: flex;
+  justify-content: flex-end;
+  align-items: baseline;
+}
+
+.label-coin {
+  display: inline-flex !important;
+  align-items: center;
+  margin-left: 13px;
+}
+
+.segment-header {
+  box-shadow: none !important;
+  border-radius: 0px !important;
+  border: none !important;
+  margin: 0px !important;
+}
