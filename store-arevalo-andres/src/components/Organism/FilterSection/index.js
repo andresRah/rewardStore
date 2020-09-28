@@ -11,8 +11,8 @@ export const FilterSection = () => {
       <Header className="flex-filter">
         16 of 32 products
         <div>
-          <ArrowLeft textAlign="right" size="38" marginRight="5px" />
-          <ArrowRight textAlign="left" size="38" />
+          <ArrowLeft size="38" marginRight="5px" />
+          <ArrowRight size="38" />
         </div>
       </Header>
       <Divider />

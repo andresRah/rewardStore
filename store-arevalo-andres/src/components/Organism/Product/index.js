@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { Card, Button, Dimmer, Header, Image } from "semantic-ui-react";
 import { Coin } from "../../Atoms/Coin/index";
-import { LabelIcon } from "../LabelIcon/index";
+// import { LabelIcon } from "../LabelIcon/index";
 import { BuyWhite } from "../../Atoms/BuyWhite/index";
 import { BuyBlue } from "../../Atoms/BuyBlue/index";
 
