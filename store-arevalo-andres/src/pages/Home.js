@@ -12,10 +12,6 @@ const Home = () => {
       <FilterSection />
       <ListProducts />
       <FilterSection />
-      <FilterSection />
-      <FilterSection />
-      <FilterSection />
-      <FilterSection />
     </div>
   );
 };

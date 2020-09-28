@@ -1,0 +1,17 @@
+.img-without-border {
+  border: none;
+  background: none !important;
+}
+
+.grey-label-icon {
+  background: #616161 !important;
+  mix-blend-mode: normal !important;
+  opacity: 0.8 !important;
+  color: #ffffff;
+}
+
+.top-right {
+  position: absolute;
+  top: 8px;
+  right: 10px;
+}
