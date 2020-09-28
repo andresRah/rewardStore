@@ -8,8 +8,8 @@ export const AeroLabLogo = (props) => {
       y={0}
       viewBox="0 0 127.412 120.541"
       xmlSpace="preserve"
-      width={38}
-      height={38}
+      width={36}
+      height={36}
       {...props}
     >
       <style type="text/css" id="style3770">
