@@ -1,5 +1,5 @@
 import React from "react";
-import { Header, Container } from "semantic-ui-react";
+import { Header, Container, Divider } from "semantic-ui-react";
 import { ArrowRight } from "../../Atoms/ArrowRight/index";
 import { ArrowLeft } from "../../Atoms/ArrowLeft/index";
 
@@ -15,6 +15,7 @@ export const FilterSection = () => {
           <ArrowRight textAlign="left" size="38" />
         </div>
       </Header>
+      <Divider />
     </Container>
   );
 };

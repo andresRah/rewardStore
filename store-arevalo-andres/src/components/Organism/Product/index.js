@@ -9,7 +9,7 @@ import imag from "../../../assets/png/switch.png";
 import "./style.css";
 
 export const Product = () => {
-  const [active, setActive] = useState(true);
+  const [active, setActive] = useState(false);
 
   const handleShow = () => setActive(true);
   const handleHide = () => setActive(false);
