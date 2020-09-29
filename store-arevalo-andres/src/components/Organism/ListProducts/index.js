@@ -8,27 +8,25 @@ export const ListProducts = () => {
   const { state, dispatch } = useContext(AppContext);
   //  <button onClick={() => dispatch({ type: "increment" })}>
 
-  useEffect(() => {
-    dispatch({ type: "GET_LIBROS" });
-  }, []);
+  // useEffect(() => {
+  //   dispatch({ type: "GET_LIBROS" });
+  // }, []);
 
   return (
     <Container>
       <Card.Group itemsPerRow={4}>
-        <div>
+        {/* <div>
           <button onClick={() => dispatch({ type: "DROP_LIBROS" })}>
             Increment
           </button>
-          {state.libros.map((item) => (
-            <h1>{item.nombre}</h1>
+          {state.libros.map((item, index) => (
+            <h1 key={index}>{item.nombre}</h1>
           ))}
-        </div>
-        {/* <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product />
-        <Product /> */}
+        </div> */}
+
+        {state?.products?.map((item, index) => (
+          <Product key={index} productInfo={item} />
+        ))}
       </Card.Group>
     </Container>
   );

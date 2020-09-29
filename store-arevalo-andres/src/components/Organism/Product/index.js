@@ -5,10 +5,10 @@ import { Coin } from "../../Atoms/Coin/index";
 import { BuyWhite } from "../../Atoms/BuyWhite/index";
 import { BuyBlue } from "../../Atoms/BuyBlue/index";
 
-import imag from "../../../assets/png/switch.png";
+//import imag from "../../../assets/png/switch.png";
 import "./style.css";
 
-export const Product = () => {
+export const Product = ({ productInfo }) => {
   const [active, setActive] = useState(false);
 
   const handleShow = () => setActive(true);
@@ -16,9 +16,9 @@ export const Product = () => {
 
   const content = (
     <div>
-      <div className="header-coin">
+      <div>
         <Header as="h2" inverted className="label-coin">
-          12.000
+          {productInfo.cost}
           <Coin style={{ marginTop: "3.5px" }} />
         </Header>
       </div>
@@ -41,7 +41,7 @@ export const Product = () => {
       >
         <Dimmer active={active}>{content}</Dimmer>
 
-        <Image src={imag} className="img-without-border" />
+        <Image src={productInfo.img.hdUrl} className="img-without-border" />
 
         {/* <div className="top-right">
           <LabelIcon text="You need 6000" />
@@ -51,8 +51,8 @@ export const Product = () => {
         </div>
 
         <Card.Content>
-          <Card.Meta>Phones</Card.Meta>
-          <Card.Description>iPhone 8</Card.Description>
+          <Card.Meta>{productInfo.category}</Card.Meta>
+          <Card.Description>{productInfo.name}</Card.Description>
         </Card.Content>
       </Dimmer.Dimmable>
     </>
