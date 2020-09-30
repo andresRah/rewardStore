@@ -7,16 +7,22 @@ import "./style.css";
 
 export const FilterSection = (props) => {
   const { nextClick, prevClick, currentPage, maxPage } = props;
+  const isMaxPage = currentPage === maxPage;
 
   return (
     <Container className="filter-container">
       <Header className="flex-filter">
         {`Page ${currentPage} of ${maxPage}`}
+
         <div>
-          {prevClick && (
-            <ArrowLeft size="38" marginRight="5px" onClick={prevClick} />
-          )}
-          {nextClick && <ArrowRight size="38" onClick={nextClick} />}
+          <ArrowLeft
+            size="38"
+            marginRight="5px"
+            onClick={prevClick}
+            disabled={!isMaxPage}
+          />
+
+          <ArrowRight size="38" onClick={nextClick} disabled={isMaxPage} />
         </div>
       </Header>
       <Divider />

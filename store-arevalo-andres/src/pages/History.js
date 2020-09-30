@@ -35,8 +35,8 @@ const History = () => {
           </Table.Header>
 
           <Table.Body>
-            {userInfo?.redeemHistory.map((item) => (
-              <Table.Row>
+            {userInfo?.redeemHistory.map((item, index) => (
+              <Table.Row key={index}>
                 <Table.Cell>
                   <Header as="h4" image>
                     <Image src={item.img.url} rounded size="mini" />
@@ -48,7 +48,9 @@ const History = () => {
                 </Table.Cell>
                 <Table.Cell>{item.category}</Table.Cell>
                 <Table.Cell>{item.cost}</Table.Cell>
-                <Table.Cell>{item.createDate}</Table.Cell>
+                <Table.Cell>
+                  {new Date(item.createDate).toLocaleString()}
+                </Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>

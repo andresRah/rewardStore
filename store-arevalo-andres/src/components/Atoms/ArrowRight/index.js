@@ -1,9 +1,11 @@
 import React from "react";
+import { Svg } from "./styles";
 
 export const ArrowRight = (props) => (
-  <svg
+  <Svg
     width={props?.size || 48}
     height={props?.size || 48}
+    disabled={props?.disabled}
     viewBox="0 0 48 48"
     {...props}
   >
@@ -15,5 +17,5 @@ export const ArrowRight = (props) => (
         d="M20.295 28.295l4.58-4.59-4.58-4.59 1.41-1.41 6 6-6 6z"
       />
     </g>
-  </svg>
+  </Svg>
 );
