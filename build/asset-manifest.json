@@ -1,0 +1,27 @@
+{
+  "files": {
+    "main.css": "/rewardStore/static/css/main.7fbd9e58.chunk.css",
+    "main.js": "/rewardStore/static/js/main.30c4c4f0.chunk.js",
+    "main.js.map": "/rewardStore/static/js/main.30c4c4f0.chunk.js.map",
+    "runtime-main.js": "/rewardStore/static/js/runtime-main.cc97fddd.js",
+    "runtime-main.js.map": "/rewardStore/static/js/runtime-main.cc97fddd.js.map",
+    "static/css/2.d25bf5f9.chunk.css": "/rewardStore/static/css/2.d25bf5f9.chunk.css",
+    "static/js/2.d1425ced.chunk.js": "/rewardStore/static/js/2.d1425ced.chunk.js",
+    "static/js/2.d1425ced.chunk.js.map": "/rewardStore/static/js/2.d1425ced.chunk.js.map",
+    "index.html": "/rewardStore/index.html",
+    "precache-manifest.898c15375fb12097ebb01729d920a180.js": "/rewardStore/precache-manifest.898c15375fb12097ebb01729d920a180.js",
+    "service-worker.js": "/rewardStore/service-worker.js",
+    "static/css/2.d25bf5f9.chunk.css.map": "/rewardStore/static/css/2.d25bf5f9.chunk.css.map",
+    "static/css/main.7fbd9e58.chunk.css.map": "/rewardStore/static/css/main.7fbd9e58.chunk.css.map",
+    "static/js/2.d1425ced.chunk.js.LICENSE.txt": "/rewardStore/static/js/2.d1425ced.chunk.js.LICENSE.txt",
+    "static/media/semantic.min.css": "/rewardStore/static/media/outline-icons.ef60a4f6.woff",
+    "static/media/header.png": "/rewardStore/static/media/header.a343e153.png"
+  },
+  "entrypoints": [
+    "static/js/runtime-main.cc97fddd.js",
+    "static/css/2.d25bf5f9.chunk.css",
+    "static/js/2.d1425ced.chunk.js",
+    "static/css/main.7fbd9e58.chunk.css",
+    "static/js/main.30c4c4f0.chunk.js"
+  ]
+}
