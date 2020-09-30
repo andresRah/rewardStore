@@ -16,6 +16,13 @@ function applicationReducer(state, action) {
     case "LOAD_PRODUCTS":
       return { ...state, products: action.data, loading: false };
 
+    case "UPDATED_TOTAL_AMOUNT":
+      return {
+        ...state,
+        userInfo: { ...state.userInfo, points: action.data },
+        loading: false,
+      };
+
     case "LOADING":
       return { ...state, loading: true };
 

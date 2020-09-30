@@ -1,11 +1,14 @@
-import React, { useReducer } from "react";
+import React, { useReducer, useContext, useState } from "react";
 import { Button, Header, Modal } from "semantic-ui-react";
 import { DropdownIcon } from "../../Atoms/DropdownIcon/index";
 import addCoinsModalReducer from "./reducer";
+import { AppContext } from "../../../providers/ContextProvider";
 
 import singleCoin from "../../../assets/png/single_coin.png";
 import coin from "../../../assets/png/bitcoin.png";
 import cash from "../../../assets/png/efectivo.png";
+
+import { callServiceAPI } from "../../../utils/services";
 
 const coinsOptions = [
   {
@@ -30,24 +33,49 @@ const coinsOptions = [
 
 const withAddCoinsModal = (Component) => {
   return function AddCoinsModal(props) {
-    const [state, dispatch] = useReducer(addCoinsModalReducer, {
+    const { dispatch } = useContext(AppContext);
+    const [numberCoins, setNumberCoins] = useState();
+
+    const [modalState, modalDispatch] = useReducer(addCoinsModalReducer, {
       open: false,
       dimmer: undefined,
     });
+    const { open, dimmer } = modalState;
 
-    const { open, dimmer } = state;
+    // #region Events
+    const addPoints = async () => {
+      let bodyData = {
+        amount: parseInt(numberCoins),
+      };
+
+      dispatch({ type: "LOADING" });
+
+      let body = JSON.stringify(bodyData);
+      const newAmount = await callServiceAPI("/user/points", "POST", body);
+
+      dispatch({ type: "UPDATED_TOTAL_AMOUNT", data: newAmount["New Points"] });
+    };
+
+    const selectNumberCoins = (e, data) => {
+      e.preventDefault();
+      setNumberCoins(data.value);
+    };
+
+    // #endregion Events
 
     return (
       <div>
         <Component
           text={props.text}
-          onClick={() => dispatch({ type: "OPEN_MODAL", dimmer: "blurring" })}
+          onClick={() =>
+            modalDispatch({ type: "OPEN_MODAL", dimmer: "blurring" })
+          }
         />
 
         <Modal
           dimmer={dimmer}
           open={open}
-          onClose={() => dispatch({ type: "CLOSE_MODAL" })}
+          onClose={() => modalDispatch({ type: "CLOSE_MODAL" })}
         >
           <Modal.Header>Add new Coins</Modal.Header>
           <Modal.Content>
@@ -59,14 +87,18 @@ const withAddCoinsModal = (Component) => {
             <DropdownIcon
               options={coinsOptions}
               placeholder="select the number of coins to recharge"
+              selectedItem={selectNumberCoins}
             />
           </Modal.Content>
           <Modal.Actions>
-            <Button negative onClick={() => dispatch({ type: "CLOSE_MODAL" })}>
+            <Button
+              negative
+              onClick={() => modalDispatch({ type: "CLOSE_MODAL" })}
+            >
               Cancel
             </Button>
-            <Button positive onClick={() => dispatch({ type: "CLOSE_MODAL" })}>
-              Acept
+            <Button positive onClick={addPoints}>
+              Accept
             </Button>
           </Modal.Actions>
         </Modal>
