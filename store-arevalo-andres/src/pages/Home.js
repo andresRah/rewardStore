@@ -9,9 +9,11 @@ import { callServiceAPI } from "../utils/services";
 
 const Home = () => {
   const { state, dispatch } = useContext(AppContext);
-  const { currentProducts, setCurrentProducts } = useState([]);
+  const [currentProducts, setCurrentProducts] = useState();
+  const { filterbyCategory } = state;
+
   const { next, prev, currentData, currentPage, maxPage } = usePagination(
-    state.products,
+    currentProducts,
     16
   );
 
@@ -26,9 +28,22 @@ const Home = () => {
 
       dispatch({ type: "LOAD_USERINFO", data: userInfo });
       dispatch({ type: "LOAD_PRODUCTS", data: products });
+      setCurrentProducts(products);
     }
     fetchData();
   }, []);
+
+  useEffect(() => {
+    if (filterbyCategory === "All") {
+      setCurrentProducts(state.products);
+    } else {
+      let { products } = state;
+      let filteredProducts = products.filter(
+        (product) => product.category === filterbyCategory
+      );
+      setCurrentProducts(filteredProducts);
+    }
+  }, [filterbyCategory]);
 
   const FilterSectionPaginated = () => (
     <FilterSection

@@ -2,6 +2,7 @@ import React from "react";
 import { Header, Container, Divider } from "semantic-ui-react";
 import { ArrowRight } from "../../Atoms/ArrowRight/index";
 import { ArrowLeft } from "../../Atoms/ArrowLeft/index";
+import { FilterCategoryDropDown } from "../FilterCategoryDropDown/index";
 
 import "./style.css";
 
@@ -13,7 +14,7 @@ export const FilterSection = (props) => {
     <Container className="filter-container">
       <Header className="flex-filter">
         {`Page ${currentPage} of ${maxPage}`}
-
+        <FilterCategoryDropDown />
         <div>
           <ArrowLeft
             size="38"

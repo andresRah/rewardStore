@@ -1,40 +1,73 @@
-import React from "react";
+import React, { useContext } from "react";
 import { Dropdown } from "semantic-ui-react";
+import { AppContext } from "../../../providers/ContextProvider";
 
 const friendOptions = [
   {
-    key: "Jenny Hess",
-    text: "Jenny Hess",
-    value: "Jenny Hess",
-    image: { avatar: true, src: "/images/avatar/small/jenny.jpg" },
+    key: "All",
+    text: "All",
+    value: "All",
+    image: {
+      avatar: true,
+      src: "https://react.semantic-ui.com/images/avatar/small/elliot.jpg",
+    },
   },
   {
-    key: "Elliot Fu",
-    text: "Elliot Fu",
-    value: "Elliot Fu",
-    image: { avatar: true, src: "/images/avatar/small/elliot.jpg" },
+    key: "Phones",
+    text: "Phones",
+    value: "Phones",
+    image: {
+      avatar: true,
+      src: "https://react.semantic-ui.com/images/avatar/small/elliot.jpg",
+    },
   },
   {
-    key: "Stevie Feliciano",
-    text: "Stevie Feliciano",
-    value: "Stevie Feliciano",
-    image: { avatar: true, src: "/images/avatar/small/stevie.jpg" },
+    key: "Gaming",
+    text: "Gaming",
+    value: "Gaming",
+    image: {
+      avatar: true,
+      src: "https://react.semantic-ui.com/images/avatar/small/elliot.jpg",
+    },
   },
   {
-    key: "Christian",
-    text: "Christian",
-    value: "Christian",
-    image: { avatar: true, src: "/images/avatar/small/christian.jpg" },
+    key: "Laptops",
+    text: "Laptops",
+    value: "Laptops",
+    image: {
+      avatar: true,
+      src: "https://react.semantic-ui.com/images/avatar/small/elliot.jpg",
+    },
+  },
+  {
+    key: "Monitors & TV",
+    text: "Monitors & TV",
+    value: "Monitors & TV",
+    image: {
+      avatar: true,
+      src: "https://react.semantic-ui.com/images/avatar/small/elliot.jpg",
+    },
   },
 ];
 
-export const FilterCategoryDropDown = () => (
-  <span>
-    Filter by category{" "}
-    <Dropdown
-      inline
-      options={friendOptions}
-      defaultValue={friendOptions[0].value}
-    />
-  </span>
-);
+export const FilterCategoryDropDown = () => {
+  const { state, dispatch } = useContext(AppContext);
+
+  const onCategorySelected = (e, data) => {
+    e.preventDefault();
+    dispatch({ type: "LOADING" });
+    dispatch({ type: "CATEGORY_FILTER_SELECTED", data: data.value });
+  };
+
+  return (
+    <span>
+      Filter by category {"   "}
+      <Dropdown
+        inline
+        options={friendOptions}
+        defaultValue={state.filterbyCategory}
+        onChange={onCategorySelected}
+      />
+    </span>
+  );
+};

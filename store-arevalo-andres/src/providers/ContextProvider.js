@@ -8,6 +8,7 @@ const initialState = {
   loading: false,
   modalOperationError: false,
   modalOperationStatus: false, // Open = True
+  filterbyCategory: "All",
 };
 
 function applicationReducer(state, action) {
@@ -50,6 +51,9 @@ function applicationReducer(state, action) {
         modalOperationError: true,
         loading: false,
       };
+
+    case "CATEGORY_FILTER_SELECTED":
+      return { ...state, filterbyCategory: action.data, loading: false };
 
     default:
       throw new Error();
