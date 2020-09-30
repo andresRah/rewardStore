@@ -5,6 +5,7 @@ export const ArrowLeft = (props) => (
   <Svg
     width={props?.size || 48}
     height={props?.size || 48}
+    onClick={props?.prevClick}
     viewBox="0 0 48 48"
     {...props}
   >

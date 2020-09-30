@@ -5,14 +5,18 @@ import { ArrowLeft } from "../../Atoms/ArrowLeft/index";
 
 import "./style.css";
 
-export const FilterSection = () => {
+export const FilterSection = (props) => {
+  const { nextClick, prevClick, currentPage, maxPage } = props;
+
   return (
     <Container className="filter-container">
       <Header className="flex-filter">
-        16 of 32 products
+        {`Page ${currentPage} of ${maxPage}`}
         <div>
-          <ArrowLeft size="38" marginRight="5px" />
-          <ArrowRight size="38" />
+          {prevClick && (
+            <ArrowLeft size="38" marginRight="5px" onClick={prevClick} />
+          )}
+          {nextClick && <ArrowRight size="38" onClick={nextClick} />}
         </div>
       </Header>
       <Divider />

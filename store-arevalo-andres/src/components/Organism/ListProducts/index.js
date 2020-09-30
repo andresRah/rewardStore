@@ -1,5 +1,4 @@
 import React from "react";
-
 import { Card, Container } from "semantic-ui-react";
 import { Product } from "../Product/index";
 
