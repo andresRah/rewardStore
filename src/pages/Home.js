@@ -45,12 +45,13 @@ const Home = () => {
     }
   }, [filterbyCategory]);
 
-  const FilterSectionPaginated = () => (
+  const FilterSectionPaginated = ({hidden = false}) => (
     <FilterSection
       nextClick={next}
       prevClick={prev}
       currentPage={currentPage}
       maxPage={maxPage}
+      hidden={hidden}
     />
   );
 
@@ -58,7 +59,7 @@ const Home = () => {
     <Layout>
       <FilterSectionPaginated />
       <ListProducts products={currentData()} />
-      <FilterSectionPaginated />
+      <FilterSectionPaginated hidden={true}/>
     </Layout>
   );
 };

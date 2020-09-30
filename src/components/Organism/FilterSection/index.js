@@ -14,7 +14,7 @@ export const FilterSection = (props) => {
     <Container className="filter-container">
       <Header className="flex-filter">
         {`Page ${currentPage} of ${maxPage}`}
-        <FilterCategoryDropDown />
+        <FilterCategoryDropDown hidden={props.hidden}/>
         <div>
           <ArrowLeft
             size="38"

@@ -34,7 +34,7 @@ const coinsOptions = [
 const withAddCoinsModal = (Component) => {
   return function AddCoinsModal(props) {
     const { dispatch } = useContext(AppContext);
-    const [numberCoins, setNumberCoins] = useState();
+    const [numberCoins, setNumberCoins] = useState(0);
 
     const [modalState, modalDispatch] = useReducer(addCoinsModalReducer, {
       open: false,
@@ -97,7 +97,7 @@ const withAddCoinsModal = (Component) => {
             >
               Cancel
             </Button>
-            <Button positive onClick={addPoints}>
+            <Button positive onClick={addPoints} disabled={numberCoins === 0 ? true:false}>
               Accept
             </Button>
           </Modal.Actions>
