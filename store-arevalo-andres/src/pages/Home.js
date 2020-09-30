@@ -4,6 +4,7 @@ import { HeaderSection } from "../components/Organism/HeaderSection/index";
 import { FilterSection } from "../components/Organism/FilterSection/index";
 import { ListProducts } from "../components/Organism/ListProducts/index";
 import { Loader, Dimmer } from "semantic-ui-react";
+import { ResultOperationModal } from "../components/Organism/ResultOperationModal/index";
 
 import { AppContext } from "../providers/ContextProvider";
 import { callServiceAPI } from "../utils/services";
@@ -46,6 +47,7 @@ const Home = () => {
             <FilterSection />
             <ListProducts products={state.products} />
             <FilterSection />
+            <ResultOperationModal />
           </>
         )}
       </>

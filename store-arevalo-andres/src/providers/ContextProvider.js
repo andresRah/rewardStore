@@ -6,6 +6,8 @@ const initialState = {
   products: [],
   userInfo: undefined,
   loading: false,
+  modalOperationError: false,
+  modalOperationStatus: false, // Open = True
 };
 
 function applicationReducer(state, action) {
@@ -25,6 +27,29 @@ function applicationReducer(state, action) {
 
     case "LOADING":
       return { ...state, loading: true };
+
+    case "CLOSE_MODAL_OPERATION":
+      return {
+        ...state,
+        modalOperationStatus: false,
+        modalOperationError: false,
+      };
+
+    case "SUCCESS_MODAL_OPERATION":
+      return {
+        ...state,
+        modalOperationStatus: true,
+        modalOperationError: false,
+        loading: false,
+      };
+
+    case "ERROR_MODAL_OPERATION":
+      return {
+        ...state,
+        modalOperationStatus: true,
+        modalOperationError: true,
+        loading: false,
+      };
 
     default:
       throw new Error();

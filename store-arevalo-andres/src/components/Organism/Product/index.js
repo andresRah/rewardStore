@@ -1,18 +1,47 @@
-import React, { useState } from "react";
+import React, { useState, useContext } from "react";
 import { Card, Button, Dimmer, Header, Image } from "semantic-ui-react";
 import { Coin } from "../../Atoms/Coin/index";
-// import { LabelIcon } from "../LabelIcon/index";
+import { LabelIcon } from "../LabelIcon/index";
 import { BuyWhite } from "../../Atoms/BuyWhite/index";
 import { BuyBlue } from "../../Atoms/BuyBlue/index";
+import { AppContext } from "../../../providers/ContextProvider";
 
-//import imag from "../../../assets/png/switch.png";
+import { callServiceAPI } from "../../../utils/services";
+import { REDEEM_SUCCESS } from "../../../utils/constants";
+
 import "./style.css";
 
 export const Product = ({ productInfo }) => {
   const [active, setActive] = useState(false);
+  const { state, dispatch } = useContext(AppContext);
+  const { userInfo } = state;
 
   const handleShow = () => setActive(true);
   const handleHide = () => setActive(false);
+
+  const onRedemProductNow = async () => {
+    let bodyData = {
+      productId: productInfo._id,
+    };
+
+    dispatch({ type: "LOADING" });
+
+    let body = JSON.stringify(bodyData);
+    const redeemResult = await callServiceAPI("/redeem", "POST", body);
+
+    if (redeemResult.message === REDEEM_SUCCESS) {
+      let [products, userInfo] = await Promise.all([
+        callServiceAPI("/products", "GET"),
+        callServiceAPI("/user/me", "GET"),
+      ]);
+
+      dispatch({ type: "LOAD_USERINFO", data: userInfo });
+      dispatch({ type: "LOAD_PRODUCTS", data: products });
+      dispatch({ type: "SUCCESS_MODAL_OPERATION" });
+    } else {
+      dispatch({ type: "ERROR_MODAL_OPERATION" });
+    }
+  };
 
   const content = (
     <div>
@@ -26,7 +55,9 @@ export const Product = ({ productInfo }) => {
         <BuyWhite />
       </div>
       <br />
-      <Button primary>Redeem now</Button>
+      <Button primary onClick={onRedemProductNow}>
+        Redeem now
+      </Button>
     </div>
   );
 
@@ -43,12 +74,17 @@ export const Product = ({ productInfo }) => {
 
         <Image src={productInfo.img.hdUrl} className="img-without-border" />
 
-        {/* <div className="top-right">
-          <LabelIcon text="You need 6000" />
-        </div> */}
-        <div className="top-right">
-          <BuyBlue />
-        </div>
+        {userInfo.points < productInfo.cost ? (
+          <div className="top-right">
+            <LabelIcon
+              text={`You need ${productInfo.cost - userInfo.points}`}
+            />
+          </div>
+        ) : (
+          <div className="top-right">
+            <BuyBlue />
+          </div>
+        )}
 
         <Card.Content>
           <Card.Meta>{productInfo.category}</Card.Meta>

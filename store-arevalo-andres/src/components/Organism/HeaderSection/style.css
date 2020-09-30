@@ -1,5 +1,5 @@
 .over-image {
-  z-index: 10000 !important;
+  z-index: 1 !important;
   position: absolute !important;
   height: 80px !important;
   left: 9.17% !important;
