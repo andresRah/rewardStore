@@ -7,7 +7,7 @@ import withAddCoinsModal from "../AddCoinsModal/index";
 
 import "./style.css";
 
-export const HeaderUser = () => {
+export const HeaderUser = ({ userInfo }) => {
   const AddCoinsModal = withAddCoinsModal(LabelIcon);
 
   return (
@@ -17,8 +17,8 @@ export const HeaderUser = () => {
           <AeroLabLogo />
         </Header>
         <Header as="h4" floated="right" className="header-coin">
-          <Header.Content>Julia Coi</Header.Content>
-          <AddCoinsModal text="6000" />
+          <Header.Content>{userInfo?.name}</Header.Content>
+          <AddCoinsModal text={userInfo?.points} />
         </Header>
       </Segment>
     </>

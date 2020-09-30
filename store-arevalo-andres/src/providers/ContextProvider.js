@@ -4,22 +4,20 @@ export const AppContext = React.createContext();
 
 const initialState = {
   products: [],
+  userInfo: undefined,
   loading: false,
 };
 
 function applicationReducer(state, action) {
   switch (action.type) {
-    case "GET_LIBROS":
-      return { products: state.products };
-
-    case "DROP_LIBROS":
-      return { products: [] };
+    case "LOAD_USERINFO":
+      return { ...state, userInfo: action.data, loading: false };
 
     case "LOAD_PRODUCTS":
-      return { products: action.data, loading: false };
+      return { ...state, products: action.data, loading: false };
 
-    case "LOADING_PRODUCTS":
-      return { loading: true };
+    case "LOADING":
+      return { ...state, loading: true };
 
     default:
       throw new Error();

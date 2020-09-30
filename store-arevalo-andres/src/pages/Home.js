@@ -3,6 +3,7 @@ import { HeaderUser } from "../components/Organism/HeaderUser/index";
 import { HeaderSection } from "../components/Organism/HeaderSection/index";
 import { FilterSection } from "../components/Organism/FilterSection/index";
 import { ListProducts } from "../components/Organism/ListProducts/index";
+import { Loader, Dimmer } from "semantic-ui-react";
 
 import { AppContext } from "../providers/ContextProvider";
 import { callServiceAPI } from "../utils/services";
@@ -11,25 +12,43 @@ const Home = () => {
   const { state, dispatch } = useContext(AppContext);
 
   useEffect(() => {
-    dispatch({ type: "LOADING_PRODUCTS" });
+    async function fetchData() {
+      dispatch({ type: "LOADING" });
 
-    callServiceAPI("/products", "GET").then((data) => {
-      console.log(data);
-      dispatch({ type: "LOAD_PRODUCTS", data });
-    });
-  }, []); // The empty array causes this effect to only run on mount
+      let [products, userInfo] = await Promise.all([
+        callServiceAPI("/products", "GET"),
+        callServiceAPI("/user/me", "GET"),
+      ]);
+
+      dispatch({ type: "LOAD_USERINFO", data: userInfo });
+      dispatch({ type: "LOAD_PRODUCTS", data: products });
+    }
+    fetchData();
+  }, []);
+
+  const loaderSection = (
+    <Dimmer active inverted>
+      <Loader size="large" inline="centered">
+        Loading
+      </Loader>
+    </Dimmer>
+  );
 
   return (
     <div>
-      {!state.loading && (
-        <>
-          <HeaderUser />
-          <HeaderSection />
-          <FilterSection />
-          <ListProducts />
-          <FilterSection />
-        </>
-      )}
+      <>
+        {state.loading ? (
+          loaderSection
+        ) : (
+          <>
+            <HeaderUser userInfo={state.userInfo} />
+            <HeaderSection />
+            <FilterSection />
+            <ListProducts products={state.products} />
+            <FilterSection />
+          </>
+        )}
+      </>
     </div>
   );
 };
