@@ -1,6 +1,7 @@
 import React from "react";
 import { Segment, Header } from "semantic-ui-react";
 import { LabelIcon } from "../LabelIcon/index";
+import { LabelHistory } from "../LabelHistory/index";
 import { AeroLabLogo } from "../../Atoms/AeroLabLogo/index";
 
 import withAddCoinsModal from "../AddCoinsModal/index";
@@ -19,6 +20,7 @@ export const HeaderUser = ({ userInfo }) => {
         <Header as="h4" floated="right" className="header-coin">
           <Header.Content>{userInfo?.name}</Header.Content>
           <AddCoinsModal text={userInfo?.points} />
+          <LabelHistory />
         </Header>
       </Segment>
     </>
